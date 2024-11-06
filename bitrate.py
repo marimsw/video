@@ -33,7 +33,15 @@ def print_video_info(video_info):
                 print("\nПараметры видео:")
                 print(f"Кодек: {stream.get('codec_name')}")
                 print(f"Разрешение: {stream.get('width')}x{stream.get('height')}")
-                print(f"Битрейт: {stream.get('bit_rate')} бит/с")
+                
+                # Получаем битрейт и преобразуем его в мегабиты
+                bit_rate = stream.get('bit_rate')
+                if bit_rate:
+                    bit_rate_mbps = int(bit_rate) / 1000000  # Преобразуем в Мбит
+                    print(f"Битрейт: {bit_rate_mbps:.2f} Мбит/с")
+                else:
+                    print("Битрейт: Неизвестен")
+
 
 # Пример использования
 input_video = '/video/2024557.mp4'
